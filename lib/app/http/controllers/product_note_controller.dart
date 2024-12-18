@@ -43,7 +43,7 @@ class ProductNoteController extends Controller {
           return Response.json({});
      }
 
-     Future<Response> update(Request request,String id) async {
+     Future<Response> update(Request request, id) async {
       await ProductNote().query().where('note_id', '=', id).update({
         'note_date': request.body['note_date'],
         'note_text': request.body['note_text'],
@@ -53,7 +53,7 @@ class ProductNoteController extends Controller {
       return Response.json({'message': 'Data updated', 'data': notes});
      }
 
-     Future<Response> destroy(String id) async {
+     Future<Response> destroy( id) async {
       await ProductNote().query().where('note_id', '=', id).delete();
       return Response.json({'message': 'Data deleted'});
      }

@@ -33,8 +33,7 @@ class OrderController extends Controller {
   }
 
   Future<Response> show(int id) async {
-    final orders =
-        await Order().query().where('order_num', '=', id).first();
+    final orders = await Order().query().where('order_num', '=', id).first();
 
     if (orders == null) {
       return Response.json({'message': 'Data not found'});
@@ -47,21 +46,15 @@ class OrderController extends Controller {
     return Response.json({});
   }
 
-  Future<Response> update(Request request, int id) async {
-    await Order().query().where('vend_id', '=', id).update({
-      'vend_name': request.body['vend_name'],
-      'vend_address': request.body['vend_address'],
-      'vend_kota': request.body['vend_kota'],
-      'vend_state': request.body['vend_state'],
-      'vend_zip': request.body['vend_zip'],
-      'vend_country': request.body['vend_country'],
-    });
-    final orders = await Order().query().where('vend_id', '=', id).get();
+  Future<Response> update(Request request, id) async {
+    await Order().query().where('order_num', '=', id).update(
+        {'order_date': DateTime.now(), 'cust_id': request.body['cust_id']});
+    final orders = await Order().query().where('order_num', '=', id).get();
 
-    return Response.json({'message': 'Data berhasil Update','data': orders });
+    return Response.json({'message': 'Data berhasil Update', 'data': orders});
   }
 
-  Future<Response> destroy(int id) async {
+  Future<Response> destroy(id) async {
     await Order().query().where('order_num', '=', id).delete();
     return Response.json({'message': 'Data terhapus'});
   }

@@ -54,7 +54,7 @@ class ProductController extends Controller {
       return Response.json({'message': 'Data updated', 'data': products});
      }
 
-     Future<Response> destroy(String id) async {
+     Future<Response> destroy( id) async {
       await Product().query().where('prod_id', '=', id).delete();
       return Response.json({'message': 'Data deleted'});
      }

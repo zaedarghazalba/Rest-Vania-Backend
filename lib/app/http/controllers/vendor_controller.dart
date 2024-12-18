@@ -44,7 +44,7 @@ class VendorController extends Controller {
     return Response.json({});
   }
 
-  Future<Response> update(Request request, String id) async {
+  Future<Response> update(Request request, id) async {
     await Vendor().query().where('vend_id', '=', id).update({
       'vend_name': request.body['vend_name'],
       'vend_address': request.body['vend_address'],
@@ -58,7 +58,7 @@ class VendorController extends Controller {
     return Response.json({'message': 'Data updated', 'data': vendors});
   }
 
-  Future<Response> destroy(String id) async {
+  Future<Response> destroy( id) async {
     await Vendor().query().where('vend_id', '=', id).delete();
     return Response.json({'message': 'Data deleted'});
   }

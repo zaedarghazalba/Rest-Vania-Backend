@@ -56,9 +56,9 @@ class CustomerController extends Controller {
       'cust_country': request.body['cust_country'],
       'cust_telp': request.body['cust_telp']
     });
-    final customer = await Customer().query().where('cust_id', '=', id).get();
+    final customers = await Customer().query().where('cust_id', '=', id).get();
 
-    return Response.json({'message': 'Data updated', 'data': customer});
+    return Response.json({'message': 'Data updated', 'data': customers});
   }
 
   // Menghapus customer

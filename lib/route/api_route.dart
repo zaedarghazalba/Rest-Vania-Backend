@@ -36,13 +36,8 @@ class ApiRoute implements Route {
     Router.resource("notesProduct", productNoteController);
 
     Router.resource("orders", orderController);
-    Router.delete("/orders/{id}", orderController.destroy);
-    Router.get("/orders/{id}", orderController.show);
 
     Router.resource("itemOrders", orderItemController);
-    Router.get("/itemOrders/{id}", orderItemController.show);
-    Router.delete("/itemOrders/{id}", orderItemController.destroy);
-    Router.put("/itemOrders/{id}", orderItemController.update);
     },middleware: [AuthenticateMiddleware()]);
   }
 }
